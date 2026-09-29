@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1w8mnpt" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.46.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <decision id="Decision_1xbi8nv" name="">
+    <decisionTable id="DecisionTable_1otysoq" hitPolicy="FIRST">
+      <input id="Input_1" label="Leave Type" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>leaveType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1xm4gjo" label="Leave Days">
+        <inputExpression id="LiteralExpression_07im3fb" typeRef="integer">
+          <text>leaveDays</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1a151p8" label="Available Balance">
+        <inputExpression id="LiteralExpression_0a1vsj1" typeRef="integer">
+          <text>availablebalance</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="Decision" typeRef="string" />
+      <rule id="DecisionRule_1u9a8mb">
+        <inputEntry id="UnaryTests_14x1597">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l0y72g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12301y1">
+          <text>&lt; leaveDays</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17wifsw">
+          <text>INSUFFICIENT_BALANCE</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14targc">
+        <inputEntry id="UnaryTests_0olzsxd">
+          <text>Sick</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p4sbyv">
+          <text>&lt;= 3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l7ezax">
+          <text>&gt;= leaveDays</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ty3k1a">
+          <text>AUTO_APPROVE</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_106e2j6">
+        <inputEntry id="UnaryTests_1y6iemk">
+          <text>Casual</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ljbnrw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0szrsh0">
+          <text>&gt;= leaveDays</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dku5vr">
+          <text>MANAGER_REVIEW</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04f298d">
+        <inputEntry id="UnaryTests_1ct1wut">
+          <text>Earned</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mkbfsy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02na9tq">
+          <text>&gt;= leaveDays</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w6ll2u">
+          <text>MANAGER_REVIEW</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f4nsxa">
+        <inputEntry id="UnaryTests_0xhc80t">
+          <text>Sick</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jduynw">
+          <text>&gt; 3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzwyuf">
+          <text>&gt;= leaveDays</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kzang0">
+          <text>MANAGER_REVIEW</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_1xbi8nv_di" dmnElementRef="Decision_1xbi8nv">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
